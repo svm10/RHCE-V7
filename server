@@ -1,0 +1,95 @@
+ 14  2020-11-2110:31:18mkdir /tmp/mynfs -p
+   15  2020-11-2110:31:18yum install nfs-utils -y
+   16  2020-11-2110:31:18systemctl restart nfs-server
+   17  2020-11-2110:31:18systemctl enable nfs-server
+   18  2020-11-2110:31:18firewall-cmd --permanent --add-service=nfs
+   19  2020-11-2110:31:18firewall-cmd --reload
+   20  2020-11-2110:31:18vim /etc/exports
+   21  2020-11-2110:31:18systemctl restart nfs-server
+   22  2020-11-2110:31:18systemctl enable nfs-server
+   23  2020-11-2110:31:18firewall-cmd --reload
+   24  2020-11-2110:31:18lab nfskrb5 setup
+   25  2020-11-2110:31:18yum install samba samba-client -y 
+   26  2020-11-2110:31:18mkdir /concert
+   27  2020-11-2110:31:18semanage fcontext -a -t samba_share_t "/concert(/.*)?"
+   28  2020-11-2110:31:18restorecon -Rv /concert/
+   29  2020-11-2110:31:18ls -Zd /concert/
+   30  2020-11-2110:31:18useradd samual
+   31  2020-11-2110:31:18smbpasswd -a samual
+   32  2020-11-2110:31:18vim /etc/samba/smb.conf
+   33  2020-11-2110:31:18systemctl restart smb nmb
+   34  2020-11-2110:31:18systemctl enable smb nmb
+   35  2020-11-2110:31:18firewall-cmd --permanent --add-service=samba
+   36  2020-11-2110:31:18firewall-cmd --reload 
+   37  2020-11-2110:31:18vim /etc/samba/smb.conf
+   38  2020-11-2110:31:18testparm -t
+   39  2020-11-2110:31:18vim /etc/samba/smb.conf
+   40  2020-11-2110:31:18testparm -t
+   41  2020-11-2110:31:18systemctl restart smb nmb
+   42  2020-11-2110:31:18setfacl -m u:samual:r-x /concert/
+   43  2020-11-2110:31:18systemctl restart smb nmb
+   44  2020-11-2110:31:18df -h
+   45  2020-11-2110:31:18mkdir /dockyard
+   46  2020-11-2110:31:18semanage fcontext -a -t samba_share_t "/dockyard(/.*)?"
+   47  2020-11-2110:31:18restorecon -Rv /dockyard/
+   48  2020-11-2110:31:18ls -Zd /dockyard/
+   49  2020-11-2110:31:18useradd catherine
+   50  2020-11-2110:31:18sampasswd -a catherine
+   51  2020-11-2110:31:18smbpasswd -a catherine
+   52  2020-11-2110:31:18useradd catherine
+   53  2020-11-2110:31:18useradd mitchel
+   54  2020-11-2110:31:18smbpasswd -a mitchel
+   55  2020-11-2110:31:18vi /etc/samba/smb.conf
+   56  2020-11-2110:31:18setfacl -m u:cathrine:r-x /dockyard/
+   57  2020-11-2110:31:18setfacl -m u:catherine:r-x /dockyard/
+   58  2020-11-2110:31:18setfacl -m u:mitchel:rwx /dockyard/
+   59  2020-11-2110:31:18systemctl restart smb nmb
+   60  2020-11-2110:31:18systemctl enable smb nmb
+   61  2020-11-2110:31:18firewall-cmd --permanent --add-service=samba
+   62  2020-11-2110:31:18firewall-cmd --reload
+   63  2020-11-2110:31:18getsebool -a | -i samba
+   64  2020-11-2110:31:18getsebool -a | grep -i samba
+   65  2020-11-2110:31:18setsebool -P samba_export_all_ro on
+   66  2020-11-2110:31:18setsebool -P samba_export_all_rw on
+   67  2020-11-2110:31:18systemctl restart smb nmb
+   68  2020-11-2110:31:18chmod 777 /concert/
+   69  2020-11-2110:31:18vi /etc/samba/smb.conf
+   70  2020-11-2110:31:18history
+   71  2020-11-2110:31:18systemctl restart smb nmb
+   72  2020-11-2110:31:18ll /
+   73  2020-11-2110:31:18lsblk
+   74  2020-11-2110:31:18df -h
+   75  2020-11-2110:31:18reboot
+   76  2020-11-2110:31:18lsblk
+   77  2020-11-2110:31:18yum install targetcli -y
+   78  2020-11-2110:31:18systemctl restart target
+   79  2020-11-2110:31:18systemctl enable target
+   80  2020-11-2110:31:18vgs
+   81  2020-11-2110:31:18vgdisplay
+   82  2020-11-2110:31:18vgdisplay -l
+   83  2020-11-2110:31:18vgcreate myvg /dev/sdb
+   84  2020-11-2110:31:18lvcreate -L +2G -n iscsi_block /dev/myvg
+   85  2020-11-2110:31:18lvdisplay
+   86  2020-11-2110:31:18targetcli
+   87  2020-11-2110:31:18ls
+   88  2020-11-2110:31:18targetcli
+   89  2020-11-2110:31:18firewall-cmd --permanent --add-port=3260/tcp
+   90  2020-11-2110:31:18firewall-cmd --reload
+   91  2020-11-2110:31:18targetcli
+   92  2020-11-2110:31:18systemctl restart target
+   93  2020-11-2110:31:18targetcli
+   94  2020-11-2110:31:18vi /etc/hosts
+   95  2020-11-2110:31:18lsblk
+   96  2020-11-2110:31:18reboot
+   97  2020-11-2110:31:26lsblk
+   98  2020-11-2110:32:03yum install targetcli
+   99  2020-11-2110:32:16systemctl restart target
+  100  2020-11-2110:32:25systemctl enable target
+  101  2020-11-2110:32:53vgcreate myvg /dev/vdb
+  102  2020-11-2110:33:03vgcreate myvg /dev/sdb
+  103  2020-11-2110:33:40lvcreate -L +2G -n iscsi_block /dev/myvg
+  104  2020-11-2110:33:51lvs
+  105  2020-11-2110:34:04targetcli
+  106  2020-11-2110:42:40firewall-cmd --permanent --add-port=3260/tcp
+  107  2020-11-2110:42:53firewall-cmd --reload 
+
