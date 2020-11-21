@@ -1,0 +1,80 @@
+ 7  2020-11-2107:57:29yum install nfs-utils -y
+    8  2020-11-2108:00:19mkdir /nfsdata
+    9  2020-11-2108:00:26vim /etc/fstab
+   10  2020-11-2108:01:04mount -a
+   11  2020-11-2108:01:08df -h
+   12  2020-11-2108:12:20yum install samba-client cifs-utils -y
+   13  2020-11-2108:16:47mkdir /smb
+   14  2020-11-2108:17:27semanage fcontext -a -t samba_share_t "/smb(/.*)?"
+   15  2020-11-2108:18:30restorecon -Rv /smb/
+   16  2020-11-2108:18:40ls -Zd /smb/
+   17  2020-11-2108:18:48vim /etc/fstab 
+   18  2020-11-2108:20:27mount -a
+   19  2020-11-2108:20:36vim /etc/fstab 
+   20  2020-11-2108:26:23mount -a
+   21  2020-11-2108:27:14mount -o username=samual //server.example.com/ARTIST /smb
+   22  2020-11-2108:28:35mount -a
+   23  2020-11-2108:28:37mount -av
+   24  2020-11-2108:28:56vim /etc/fstab 
+   25  2020-11-2108:29:33mount -av
+   26  2020-11-2108:29:52mount -a
+   27  2020-11-2108:30:09vim /etc/fstab 
+   28  2020-11-2108:31:48yum install samba -y
+   29  2020-11-2108:32:54mkdir /dockyard
+   30  2020-11-2108:42:47yum install samba-client cifs-utils -y
+   31  2020-11-2108:43:01mkdir /mnt/akon -p
+   32  2020-11-2108:43:42semanage fcontext -a -t samba_share_t "/mnt/akon(/.*)?"
+   33  2020-11-2108:44:05restorecon -Rv /mnt/akon/
+   34  2020-11-2108:44:28cat >/root/test.sec
+   35  2020-11-2108:44:55vim /etc/fstab 
+   36  2020-11-2108:46:20mount -a
+   37  2020-11-2108:46:38vim /etc/fstab 
+   38  2020-11-2108:47:00vi /root/test.sec
+   39  2020-11-2108:47:22mount -a
+   40  2020-11-2108:47:35mount -av
+   41  2020-11-2108:48:24vim /etc/fstab 
+   42  2020-11-2108:50:53mount -a
+   43  2020-11-2108:57:55ip a
+   44  2020-11-2108:59:43vim /etc/fstab 
+   45  2020-11-2109:00:47vi /root/test.sec
+   46  2020-11-2109:01:12ll /root
+   47  2020-11-2109:01:29chmod 600 /root/test.sec 
+   48  2020-11-2109:01:35mount -a
+   49  2020-11-2109:02:35ll /
+   50  2020-11-2109:03:56df -h
+   51  2020-11-2109:29:41lsblk
+   52  2020-11-2109:33:16df -h
+   53  2020-11-2109:44:55ip a
+   54  2020-11-2109:47:30yum install iscsi-initiator-utils.i686 
+   55  2020-11-2109:52:31vim /etc/iscsi/initiatorname.iscsi 
+   56  2020-11-2109:53:37systemctl restart iscsi iscsid
+   57  2020-11-2109:53:46systemctl enable iscsi iscsid
+   58  2020-11-2109:53:59man iscsiadm 
+   76  2020-11-2110:20:05lsblk
+   77  2020-11-2110:25:03iscsiadm --mode discoverydb --type sendtargets --portal 192.168.40.244 --discover
+   78  2020-11-2110:25:52vim /etc/iscsi/initiatorname.iscsi 
+   79  2020-11-2110:29:56yum remove iscsi-initiator-utils.i686 
+   80  2020-11-2110:41:12ip a
+   81  2020-11-2110:43:10yum install iscsi-initiator-utils.i686 -y
+   82  2020-11-2110:43:42vim /etc/iscsi/initiatorname.iscsi 
+   83  2020-11-2110:44:28systemctl restart iscsi iscsid
+   84  2020-11-2110:44:37systemctl enable iscsi iscsid
+   85  2020-11-2110:44:53iscsiadm --mode discoverydb --type sendtargets --portal 192.168.40.243 --discover
+   86  2020-11-2110:45:53man iscsiadm 
+   87  2020-11-2110:47:41iscsiadm --mode node --targetname iqn.2017-18.com.example.network:server --portal 192.168.40.243:3260 --login
+   88  2020-11-2110:47:49lsblk
+   89  2020-11-2110:48:02iscsiadm --mode node --targetname iqn.2017-18.com.example.network:server --portal 192.168.40.243:3260 --logout
+   90  2020-11-2110:48:04lsblk
+   91  2020-11-2110:48:23mkdir /shareddisk
+   92  2020-11-2110:48:32vim /etc/fstab 
+   93* 2020-11-2110:49:32
+   94  2020-11-2110:50:02iscsiadm --mode node --targetname iqn.2017-18.com.example.network:server --portal 192.168.40.243:3260 --login
+   95  2020-11-2110:50:25partprobe /dev/sdb
+   96  2020-11-2110:50:35mkfs.ext4 /dev/sdb1
+   97  2020-11-2110:50:43mkfs.ext4 /dev/sdb
+   98  2020-11-2110:52:26mount -a
+   99  2020-11-2110:52:29df -h
+  100  2020-11-2110:52:52vim /etc/fstab 
+  101  2020-11-2110:53:14umount -a
+  102  2020-11-2110:53:25df -h
+  103  2020-11-2110:53:30mount -a
